@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: #070b14;
+  color: #e2e8f0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient animated gradient backdrop */
+.bhoomi-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(45,212,191,0.10), transparent 60%),
+    radial-gradient(50rem 40rem at 0% 100%, rgba(56,189,248,0.12), transparent 60%);
+}
+
+/* Glassmorphism card */
+.glass {
+  background: rgba(20, 32, 54, 0.55);
+  border: 1px solid rgba(86, 124, 168, 0.22);
+  backdrop-filter: blur(14px);
+}
+
+/* Skeleton shimmer for loading states */
+.skeleton {
+  background: linear-gradient(90deg, #0e1626 0%, #1a2740 50%, #0e1626 100%);
+  background-size: 1000px 100%;
+}
+
+/* Leaflet dark-mode tweak */
+.leaflet-container { background: #0e1626; }
+.leaflet-tile { filter: brightness(0.7) saturate(0.85) hue-rotate(190deg); }

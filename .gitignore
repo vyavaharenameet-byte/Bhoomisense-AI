@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Env files — never commit secrets
+.env
+*.env
+!*.env.example
+
+# ML artifacts (regenerate with the training pipeline)
+ml/data/
+ml/reports/
+# Keep models/ — they are needed for the backend to run.
+# If they are large, use Git LFS or a release asset instead.
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build outputs
+build/
+coverage/
+
+# ML model files
+*.pkl
+*.joblib

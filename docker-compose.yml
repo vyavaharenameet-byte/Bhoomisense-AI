@@ -1,0 +1,45 @@
+# BhoomiSense AI — full local stack.
+#   docker compose up --build
+#
+# Postgres + Redis are included for when you add auth / history / caching
+# (see ARCHITECTURE.md). The core app (frontend + backend) runs without them.
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: development
+      CORS_ORIGINS: "http://localhost:5173,http://localhost:8080"
+      DATABASE_URL: "postgresql+asyncpg://bhoomi:bhoomi@db:5432/bhoomisense"
+      REDIS_URL: "redis://cache:6379/0"
+    depends_on:
+      - db
+      - cache
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: bhoomi
+      POSTGRES_PASSWORD: bhoomi
+      POSTGRES_DB: bhoomisense
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
