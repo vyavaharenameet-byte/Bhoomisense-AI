@@ -19,9 +19,9 @@ async function post<T>(path: string, body: unknown): Promise<T> {
 
 export const api = {
   predictByCity: (city: string) =>
-    post<PredictionResponse>("/api/predict/city", { city }),
+    post<PredictionResponse>("/api/predict/city/", { city }),
   predictByCoords: (latitude: number, longitude: number) =>
-    post<PredictionResponse>("/api/predict/coords", { latitude, longitude }),
+    post<PredictionResponse>("/api/predict/coords/", { latitude, longitude }),
   modelMetadata: async () => {
     const res = await fetch(`${BASE}/api/model/metadata`);
     return res.json();
