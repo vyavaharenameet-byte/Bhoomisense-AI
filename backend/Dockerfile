@@ -7,6 +7,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # Install deps first so Docker layer-caching skips this on code-only changes
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
