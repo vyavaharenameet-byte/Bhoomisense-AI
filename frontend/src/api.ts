@@ -2,7 +2,7 @@
 import type { PredictionResponse } from "./types";
 
 // In dev, Vite proxies /api -> localhost:8000. In production set VITE_API_URL.
-const BASE = "https://bhoomisenseai.up.railway.app";
+const BASE = import.meta.env.VITE_API_URL ?? "";
 
 async function post<T>(path: string, body: unknown): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
